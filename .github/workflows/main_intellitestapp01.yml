@@ -18,24 +18,23 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      # 👇 Move into correct folder first (IMPORTANT FIX)
+      - name: Show repo structure (DEBUG - keep for now)
+        run: dir /s
+
       - name: Restore
-        working-directory: website-appservice
-        run: dotnet restore HRPortalApp.csproj
+        run: dotnet restore "${{ github.workspace }}/Project 01 - Secure HR Portal/website-appservice/HRPortalApp.csproj"
 
       - name: Build
-        working-directory: website-appservice
-        run: dotnet build HRPortalApp.csproj --configuration Release --no-restore
+        run: dotnet build "${{ github.workspace }}/Project 01 - Secure HR Portal/website-appservice/HRPortalApp.csproj" --configuration Release --no-restore
 
       - name: Publish
-        working-directory: website-appservice
-        run: dotnet publish HRPortalApp.csproj --configuration Release --no-build --output ${{ github.workspace }}/published
+        run: dotnet publish "${{ github.workspace }}/Project 01 - Secure HR Portal/website-appservice/HRPortalApp.csproj" --configuration Release --no-build --output "${{ github.workspace }}/published"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ASP-app
-          path: ${{ github.workspace }}/published
+          path: "${{ github.workspace }}/published"
 
   deploy:
     runs-on: windows-latest
