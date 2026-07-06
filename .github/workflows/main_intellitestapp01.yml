@@ -1,4 +1,4 @@
-name: Build and deploy ASP app to Azure Web App - intellitestapp01
+name: Build and deploy ASP.NET Core app to Azure Web App - intellitestapp01
 
 on:
   push:
@@ -18,20 +18,24 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      # 👇 Move into correct folder first (IMPORTANT FIX)
       - name: Restore
-        run: dotnet restore "./Project 01 - Secure HR Portal/website-appservice/HRPortalApp.csproj"
+        working-directory: website-appservice
+        run: dotnet restore HRPortalApp.csproj
 
       - name: Build
-        run: dotnet build "./Project 01 - Secure HR Portal/website-appservice/HRPortalApp.csproj" --configuration Release --no-restore
+        working-directory: website-appservice
+        run: dotnet build HRPortalApp.csproj --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish "./Project 01 - Secure HR Portal/website-appservice/HRPortalApp.csproj" --configuration Release --no-build --output "${{ github.workspace }}/published"
+        working-directory: website-appservice
+        run: dotnet publish HRPortalApp.csproj --configuration Release --no-build --output ${{ github.workspace }}/published
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ASP-app
-          path: "${{ github.workspace }}/published"
+          path: ${{ github.workspace }}/published
 
   deploy:
     runs-on: windows-latest
@@ -57,6 +61,6 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'intellitestapp01'
-          slot-name: 'Production'
+          app-name: intellitestapp01
+          slot-name: Production
           package: ${{ github.workspace }}/ASP-app
