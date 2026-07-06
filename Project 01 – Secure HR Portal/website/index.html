@@ -8,42 +8,41 @@
 
 <link rel="stylesheet" href="styles.css">
 
+<script>
+// ===============================
+// UPDATE THESE VALUES LATER
+// ===============================
+const STORAGE_ACCOUNT = "<your-storage-account>";
+const CONTAINER = "hr-documents";
+
+// SAS TOKEN (you will replace later)
+// IMPORTANT: do NOT include '?' at start if already present
+const SAS_TOKEN = "<your-sas-token>";
+</script>
+
 </head>
 
 <body>
 
 <header>
-
 <div class="container">
-
 <h1>ABC Technologies</h1>
-
-<p>Employee Human Resources Portal</p>
-
+<p>Employee Human Resources Portal (VM - IIS)</p>
 </div>
-
 </header>
 
 <nav>
-
 <a href="#">Home</a>
 <a href="#">Leave Policy</a>
 <a href="#">Benefits</a>
 <a href="#">Payroll</a>
 <a href="#">Downloads</a>
 <a href="#">Contact HR</a>
-
 </nav>
 
 <div class="hero">
-
 <h2>Welcome to the HR Portal</h2>
-
-<p>
-Access company policies, employee benefits,
-leave management information and HR resources.
-</p>
-
+<p>Access company policies and employee resources securely hosted on Azure Storage.</p>
 </div>
 
 <div class="container">
@@ -51,111 +50,52 @@ leave management information and HR resources.
 <section class="cards">
 
 <div class="card">
-
 <h3>Employee Handbook</h3>
+<p>Download the latest employee handbook from Azure Storage.</p>
 
-<p>
-Download the latest employee handbook stored
-securely in Azure Storage.
-</p>
-
-<button>Download</button>
-
+<button onclick="downloadFile('Employee-Handbook.txt')">
+Download
+</button>
 </div>
 
 <div class="card">
-
 <h3>Leave Policy</h3>
+<p>View annual leave and HR policy document.</p>
 
-<p>
-View annual leave, sick leave and maternity leave
-policies.
-</p>
-
-<button>View Policy</button>
-
+<button onclick="downloadFile('Leave-Policy.txt')">
+View Policy
+</button>
 </div>
 
 <div class="card">
-
 <h3>Benefits</h3>
-
-<p>
-Health Insurance<br>
-Retirement Plans<br>
-Wellness Programs
-</p>
-
-<button>Learn More</button>
-
+<p>Health Insurance<br>Retirement Plans<br>Wellness Programs</p>
+<button disabled>Learn More</button>
 </div>
 
 </section>
 
-<section class="announcement">
-
-<h2>HR Announcements</h2>
-
-<ul>
-
-<li>Annual Performance Reviews begin next month.</li>
-
-<li>Employee Wellness Week starts Monday.</li>
-
-<li>Updated Leave Policy effective from July.</li>
-
-<li>Mandatory Cyber Security Awareness Training.</li>
-
-</ul>
-
-</section>
-
-<section class="contact">
-
-<h2>HR Contact Information</h2>
-
-<table>
-
-<tr>
-
-<td>Email</td>
-
-<td>hr@abctechexample.com</td>
-
-</tr>
-
-<tr>
-
-<td>Phone</td>
-
-<td>+1 555-100-2000</td>
-
-</tr>
-
-<tr>
-
-<td>Office Hours</td>
-
-<td>Monday - Friday<br>9 AM - 6 PM</td>
-
-</tr>
-
-</table>
-
-</section>
-
 </div>
+
+<script>
+function downloadFile(fileName) {
+
+    const url =
+    `https://${STORAGE_ACCOUNT}.blob.core.windows.net/${CONTAINER}/${fileName}?${SAS_TOKEN}`;
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>
 
 <footer>
-
-ABC Technologies © 2026
-
-<br>
-
-Hosted on Microsoft Azure
-
+ABC Technologies © 2026 <br>
+Hosted on Azure VM (IIS)
 </footer>
 
 </body>
-
 </html>
