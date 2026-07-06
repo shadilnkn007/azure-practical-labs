@@ -1,5 +1,3 @@
-# azure-practical-labs
-
 # Azure Infrastructure Practical Labs
 
 ## Overview
