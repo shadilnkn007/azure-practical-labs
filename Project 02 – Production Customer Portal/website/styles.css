@@ -1,0 +1,179 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, Arial, sans-serif;
+}
+
+body{
+background:#eef3f9;
+color:#222;
+}
+
+/* HEADER */
+
+header{
+background:linear-gradient(90deg,#0f4c81,#0078D4);
+color:white;
+padding:30px;
+text-align:center;
+}
+
+header p{
+margin-top:8px;
+opacity:0.9;
+}
+
+.status{
+margin-top:10px;
+font-size:14px;
+}
+
+.live{
+background:#00c853;
+padding:5px 10px;
+border-radius:20px;
+font-weight:bold;
+}
+
+/* NAV */
+
+nav{
+display:flex;
+justify-content:center;
+background:#003b6f;
+flex-wrap:wrap;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+padding:12px 20px;
+transition:0.3s;
+}
+
+nav a:hover{
+background:#002a50;
+}
+
+/* HERO */
+
+.hero{
+padding:50px 20px;
+text-align:center;
+background:white;
+}
+
+.hero h2{
+color:#0078D4;
+margin-bottom:10px;
+}
+
+/* SERVER INFO */
+
+.server-info{
+background:white;
+margin:30px auto;
+padding:30px;
+max-width:900px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.server-label{
+font-size:14px;
+color:#666;
+}
+
+.server-box{
+margin-top:10px;
+font-size:28px;
+font-weight:bold;
+color:#0078D4;
+padding:20px;
+border:2px dashed #0078D4;
+display:inline-block;
+}
+
+.note{
+margin-top:15px;
+font-size:13px;
+color:#666;
+}
+
+/* CARDS */
+
+.cards{
+display:flex;
+gap:20px;
+justify-content:center;
+padding:30px;
+flex-wrap:wrap;
+}
+
+.card{
+background:white;
+padding:25px;
+width:280px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.card h3{
+color:#0078D4;
+margin-bottom:10px;
+}
+
+.card p{
+font-size:14px;
+line-height:1.6;
+}
+
+button{
+margin-top:15px;
+padding:10px 18px;
+background:#0078D4;
+border:none;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#005a9e;
+}
+
+/* FOOTER INFO */
+
+.footer-info{
+background:white;
+max-width:900px;
+margin:30px auto;
+padding:25px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+.footer-info ul{
+margin-left:20px;
+line-height:1.8;
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:#003b6f;
+color:white;
+margin-top:40px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+.cards{
+flex-direction:column;
+align-items:center;
+}
+}
