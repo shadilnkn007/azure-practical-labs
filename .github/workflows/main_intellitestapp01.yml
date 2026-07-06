@@ -18,17 +18,17 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Show repo structure
-        run: Get-ChildItem -Recurse | Format-Table FullName
+      - name: Find csproj
+        run: Get-ChildItem -Recurse -Filter HRPortalApp.csproj
 
       - name: Restore
-        run: dotnet restore "${{ github.workspace }}/Project 01 - Secure HR Portal/website-appservice/HRPortalApp.csproj"
+        run: dotnet restore $(Get-ChildItem -Recurse -Filter HRPortalApp.csproj | Select-Object -ExpandProperty FullName)
 
       - name: Build
-        run: dotnet build "${{ github.workspace }}/Project 01 - Secure HR Portal/website-appservice/HRPortalApp.csproj" --configuration Release --no-restore
+        run: dotnet build $(Get-ChildItem -Recurse -Filter HRPortalApp.csproj | Select-Object -ExpandProperty FullName) --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish "${{ github.workspace }}/Project 01 - Secure HR Portal/website-appservice/HRPortalApp.csproj" --configuration Release --no-build --output "${{ github.workspace }}/published"
+        run: dotnet publish $(Get-ChildItem -Recurse -Filter HRPortalApp.csproj | Select-Object -ExpandProperty FullName) --configuration Release --no-build --output "${{ github.workspace }}/published"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
