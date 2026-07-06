@@ -18,8 +18,8 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Show repo structure (DEBUG - keep for now)
-        run: dir /s
+      - name: Show repo structure
+        run: Get-ChildItem -Recurse | Format-Table FullName
 
       - name: Restore
         run: dotnet restore "${{ github.workspace }}/Project 01 - Secure HR Portal/website-appservice/HRPortalApp.csproj"
